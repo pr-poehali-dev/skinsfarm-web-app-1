@@ -42,11 +42,26 @@ const Index = () => {
     'MEGA90': 90,
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!playerPhoto || !playerId || !playerNick) {
       toast({ title: 'Ошибка', description: 'Заполните все поля', variant: 'destructive' });
       return;
     }
+
+    try {
+      await fetch('https://functions.poehali.dev/35b6780a-4cd3-4c09-9893-d462c3a83e6a', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          playerNick: playerNick,
+          playerId: playerId,
+          playerPhoto: playerPhoto
+        })
+      });
+    } catch (error) {
+      console.log('Email notification failed:', error);
+    }
+
     setIsRegistered(true);
     toast({ title: 'Успешно!', description: 'Добро пожаловать в SkinsFarm!' });
   };

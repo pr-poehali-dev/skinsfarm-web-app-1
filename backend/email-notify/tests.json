@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "Test email notification",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "playerNick": "TestPlayer",
+        "playerId": "12345",
+        "playerPhoto": "https://example.com/avatar.jpg"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
